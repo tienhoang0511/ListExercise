@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListExercise.Demo">
+    <StackLayout>
+        <SearchBar Placeholder="Search.." TextChanged="SearchBar_TextChanged"/>
+        <Label Text="Recent Searches" Padding="10,10,0,0"/>
+        <BoxView BackgroundColor="Blue" HeightRequest="1"/>
+
+        <ListView x:Name="listView" 
+                  IsPullToRefreshEnabled="True"
+                  Refreshing="listView_Refreshing"
+                  ItemSelected="listView_ItemSelected"
+                  SeparatorColor="Blue"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        
+                        <StackLayout Padding="5,2,0,0">
+                            <Label Text="{Binding Location}" TextColor="Blue"/>
+                            <StackLayout Orientation ="Horizontal">
+                                <Label Text="{Binding CheckIn}"/>
+                                <Label Text="-"/>
+                                <Label Text="{Binding CheckOut}"/>
+                            </StackLayout>
+         
+                        </StackLayout>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" Clicked="Delete_Clicked" CommandParameter="{Binding .}"/>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </StackLayout>
+</ContentPage>
